@@ -84,9 +84,9 @@ FHS_data0 <- FHS_data_basic |>
     
     
     #### education
-    EDUC = case_when(MF5 <= 2 ~ "< High school",
+    EDUC = case_when(MF5 <= 3 ~ "< High school",
                      MF5 %in% c(4, 5) ~ "High school",
-                     MF5 %in% c(3, 6, 7, 8, 10) ~ "college or higher"
+                     MF5 %in% c(6, 7, 8, 10) ~ "college or higher"
     ),
     EDUC = factor(EDUC, levels = c("< High school", "High school", "college or higher")),
     
@@ -215,7 +215,6 @@ tbl_summary(FHS_data_use)
 tbl_summary(FHS_data_use, by = TOBACCO) |> 
   add_overall()|> 
   add_p() 
-
 
 # ********************************************
 #      save data                       -------

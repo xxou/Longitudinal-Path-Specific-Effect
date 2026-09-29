@@ -2,3 +2,6 @@
 .Rhistory
 .Ruserdata
 .DS_Store
+output/hpc_data/FHS_PSE_Effect2457.RData
+data/*RData
+data/FHS_Data/*
