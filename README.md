@@ -1,6 +1,6 @@
-# Semiparametric Inference for Causal Path-Specific Effects in Longitudinal Studies with Repeated Treatments and Multiple Mediators
+# Inference for Causal Path-Specific Effects in Longitudinal Studies with Repeated Treatments and Multiple Mediators
 
-🎯 This repository contains R code and simulation results accompanying the manuscript *Semiparametric Inference for Causal Path-Specific Effects in Longitudinal Studies with Repeated Treatments and Multiple Mediators*. The study develops semiparametric methods for estimating causal path-specific effects with repeated treatments and multiple ordered mediators.
+🎯 This repository contains R analysis for paper "Inference for Causal Path-Specific Effects in Longitudinal Studies with Repeated Treatments and Multiple Mediators" ([arXiv](https://arxiv.org/abs/2610.34349)).
 
 🎯 The code covers three simulation studies and a Framingham Heart Study (FHS) application examining the effects of sustained smoking on systolic blood pressure (SBP) through repeated body mass index (BMI) measurements. The simulations implement both density-based and treatment-regression one-step estimators. The FHS analysis uses the accompanying R package [**flexPaths**](https://github.com/xxou/flexPaths).
 
@@ -8,9 +8,9 @@
 
 The simulation studies evaluate:
 
-1. **Correct nuisance-model specification:** finite-sample bias, variance, mean squared error, and confidence interval coverage of the two one-step estimators.
-2. **Misspecified GLMs versus Super Learner:** performance under parametric model misspecification and flexible nuisance estimation.
-3. **Nuisance-model misspecification:** the multiple-robustness regimes considered in the manuscript, together with all-correct and all-misspecified benchmarks.
+1.  **Correct nuisance-model specification:** finite-sample bias, variance, mean squared error, and coverage of the two one-step estimators.
+2.  **Misspecified GLMs versus Super Learner:** performance under parametric model misspecification and flexible model estimation.
+3.  **Robustness to model misspecification:** the multiple-robustness regimes considered in the manuscript, together with all-correct and all-misspecified benchmarks.
 
 All three studies use two binary treatments and four ordered intermediate variables, with the temporal ordering `T1 → M1 → L1 → T2 → M2 → L2 → Y`. The simulation code uses `T1` and `T2` for the treatments denoted by $A_1$ and $A_2$ in the manuscript. The labels `density` and `bayes` refer to the density-based representation ($\ell=1$) and the Bayes-rule treatment-regression representation ($\ell=2$), respectively.
 
@@ -18,7 +18,7 @@ The FHS application uses smoking and BMI measurements from Exams **2, 4, 5, and 
 
 ## Folder description
 
-```text
+``` text
 longitudinal_PSE/
 ├── README.md
 ├── LICENSE.txt
@@ -54,7 +54,7 @@ These functions are written for the two-treatment simulation structure. The FHS 
 
 This folder contains **Simulations 1 and 2**.
 
-- [`1_longT_make_data.R`](codes/simulations/Theoretical_flexEst_0223/1_longT_make_data.R) defines the observed-data generator and a function for Monte Carlo evaluation of counterfactual means.
+- [`1_longT_make_data.R`](codes/simulations/Theoretical_flexEst_0223/1_longT_make_data.R) defines the data generator and a function for Monte Carlo evaluation of counterfactual means.
 - [`DGP_coefficients/par_0323.R`](codes/simulations/Theoretical_flexEst_0223/DGP_coefficients/par_0323.R) specifies the data-generating coefficients.
 - [`3_simualtion_theoretical.R`](codes/simulations/Theoretical_flexEst_0223/3_simualtion_theoretical.R) runs Simulation 1 locally in parallel, summarizes the results, and produces the correct-specification figures. The filename retains its original spelling.
 - [`2_complex_simulation.R`](codes/simulations/Theoretical_flexEst_0223/2_complex_simulation.R) contains the job-generation, single-task, aggregation, and plotting sections for Simulation 2. Its simulation stages are intended for execution on an HPC cluster; see the instructions below.
@@ -63,7 +63,7 @@ This folder contains **Simulations 1 and 2**.
 
 This folder contains **Simulation 3**.
 
-- [`1_makeData.R`](codes/simulations/misspecification_0222/1_makeData.R) defines the observed-data generator and counterfactual simulation function for the robustness study.
+- [`1_makeData.R`](codes/simulations/misspecification_0222/1_makeData.R) defines the data generator and counterfactual simulation function for the robustness study.
 - [`DGP_coefficients/par_0315.R`](codes/simulations/misspecification_0222/DGP_coefficients/par_0315.R) specifies its data-generating coefficients.
 - [`2_simu_miss_falseFormula.R`](codes/simulations/misspecification_0222/2_simu_miss_falseFormula.R) specifies the nuisance-model configurations, runs the simulations locally in parallel, summarizes the estimates, and produces the robustness figures.
 
@@ -87,11 +87,17 @@ This folder contains **Simulation 3**.
 
 Other result files in these directories retain earlier simulation runs. Use the filenames listed above when following the current scripts.
 
-
 ## Citation and license
 
-If you use this code, please cite the accompanying manuscript:
+If you use this code, please cite [the paper](https://arxiv.org/abs/2610.34349):
 
-> Nabi, R., Ou, X., and He, X. *Semiparametric Inference for Causal Path-Specific Effects in Longitudinal Studies with Repeated Treatments and Multiple Mediators*. Manuscript.
+``` bibtex
+@article{ou2026causalpse,
+  title   = {Inference for Causal Path-Specific Effects in Longitudinal Studies with Repeated Treatments and Multiple Mediators},
+  author  = {Ou, Xiaxian and He, Xinwei and Nabi, Razieh},
+  journal = {arXiv preprint arXiv:2610.34349},
+  year    = {2026}
+}
+```
 
 The code is distributed under the [MIT License](LICENSE.txt). Access to FHS data is governed separately by the study's data-access terms.
